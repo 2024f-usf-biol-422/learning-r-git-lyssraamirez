@@ -22,3 +22,5 @@ This is a report on SARS-CoV-2, including some variant analysis.
 # this is an example code chunk
 print("Hello World")
 ```
+read.csv(paste0("data/",sars_CoV2_snps.csv))
+

@@ -3,6 +3,7 @@
 
 #load packages
 library(dplyr)
+library(lintr)
 
 #path
 snp_path <- "data/sample_snp_data.csv"
@@ -14,7 +15,7 @@ subset_snp_by_sample_id <- function(snp_path,ssample){
     filter(ssample == "
 SRR12433063")
 }
-#return the dplyr filter subset of snp_path
+#return filtered data set
 return(subset_snp_by_sample_id(snp_path,"SRR12433063"))
 
 

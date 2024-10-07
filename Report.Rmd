@@ -1,7 +1,7 @@
 ---
 title: 'Analysis of SARS-CoV2 snps'
 author: "Alyssa Ramirez"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "October 4,2024"
 output: html_document
 csl: bioinformatics.csl
 bibliography: references.bib
@@ -13,14 +13,22 @@ knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE,
                       error = FALSE)
 ```
+```{
 
-# Background
-
-This is a report on SARS-CoV-2, including some variant analysis.
-
-```{r sample-chunk}
-# this is an example code chunk
-print("Hello World")
+```{r}
+#Set up, defining paths and sample ID choice
+snp_path <- "data/sample_snp_data.csv"
+sampple_ID <- "ssample == SRR12433063"
 ```
-read.csv(paste0("data/",sars_CoV2_snps.csv))
+
+
+
+
+
+      
+
+
+
+
+
 

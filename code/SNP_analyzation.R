@@ -18,6 +18,8 @@ lint("data/sample_snp_data.csv")
 #Define .csv
 subset_snp_data <- ("sample_snp_data copy.csv")
 
+#Define sample_ID being used for assignment, pulled from the data defined
+sample_ID <- ("SRR12433063")
 
 
 

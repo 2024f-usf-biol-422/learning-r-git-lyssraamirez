@@ -3,7 +3,7 @@
 ###10/24/24
 
 # subset_snp_data.R
-# This script defines a function to subset a SNP dataset by a given sample ID. Chatgpt was used as a guide.
+# This script defines a function to subset a SNP dataset by a given sample ID. ChatGPT was used as a guide.
 # The function takes two arguments:
 #   - file_path: A string with the path/name of the SNP data set CSV file.
 #   - sample_id: A string with the sample ID to subset by.
@@ -15,6 +15,13 @@ library(dplyr)
 library(lintr)
 lint("data/sample_snp_data.csv")
 
-#Define function
+#Define .csv
+subset_snp_data <- ("sample_snp_data copy.csv")
+
+
+
+
+
+
 
 

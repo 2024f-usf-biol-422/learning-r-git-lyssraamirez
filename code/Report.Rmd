@@ -1,0 +1,75 @@
+---
+title: 'Analysis of SARS-CoV2 snps'
+author: "Alyssa Ramirez"
+date: "October 4,2024"
+bibliography: references.bib
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE)
+```
+```{
+
+```{r}
+##Set up, defining paths and sample ID choice
+
+snp_path <- read.csv("sample_snp_data copy.csv")
+sample_ID <- "SRR12433063"
+
+```
+
+
+```{r}
+#Load packages
+library(dplyr)
+library(lintr)
+```
+
+```{r}
+#Source
+source(snp_path)
+```
+
+#project description
+This project is an analysis of the SARS-CoV2 snps."snps" are single nucleotide polymorphisms, which are variations in the DNA sequence of the genome. These variations can be used to track the evolution and spread of the virus. Data found can help deter the spread of the virus and help future pandemics from occuring.
+
+```{r}
+#install packages
+install.packages("citr")
+library(citr)
+```
+
+#Project goals and necessary packages
+In this project the goal is to correctly analyze gemonic data sets and identify the snps in the data. The packages needed for this project are dplyr, ggplot, and citr. Dplyr [@R-dplyr]is nessesary for data manipulation, ggplot[@R-ggplot2] is needed for data visualizations like graphs and plots, and citr[@R-citr] is needed for citation managment.
+
+##Subsetting data
+
+```{r}
+#Load the snp dataset and sample ID
+snp_dataset <- read.csv(snp_path)
+ssample <- "SRR12433063"
+```
+
+```{r}
+#subset data
+subset_snp_data <- function(data, sample_ID)
+{
+data %>% filter(sample_ID)
+}
+```
+
+
+
+
+
+
+      
+
+
+
+
+
+

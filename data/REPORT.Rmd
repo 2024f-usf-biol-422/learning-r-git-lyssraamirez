@@ -1,0 +1,19 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-10-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Setup
+
+```{r}
+# Assign the path/name of the SNP dataset to a variable
+snp_path <- read.csv("sample_snp_data copy.csv")
+sample_ID <- "SRR12433063"
+```
+
+

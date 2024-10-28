@@ -13,13 +13,22 @@
 #load packages
 library(dplyr)
 library(lintr)
-lint("data/sample_snp_data.csv")
+lint("sample_snp_data copy.csv")
 
-#Define .csv
-subset_snp_data <- ("sample_snp_data copy.csv")
+#define .csv as data set
+snp_data <- ("sample_snp_data copy.csv")
 
-#Define sample_ID being used for assignment, pulled from the data defined
-sample_ID <- ("SRR12433063")
+#read in snp_data set
+snp_data <- read.csv("sample_snp_data copy.csv")
+
+#specify sample ID
+subset_data <- snp_data %>%
+filter(sample == "SRR12433063")
+
+
+
+
+
 
 
 

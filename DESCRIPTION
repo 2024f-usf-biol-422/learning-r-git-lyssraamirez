@@ -1,3 +1,0 @@
-Package: compendium
-Version: 0.1.0
-Depends: tidyverse, rmarkdown, seqinr, ggthemes, RColorBrewer, magrittr, vcfR, janitor, knitr, testthat

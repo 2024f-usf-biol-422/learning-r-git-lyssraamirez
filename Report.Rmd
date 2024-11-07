@@ -1,4 +1,5 @@
 ---
+name: Alyssa Ramirez
 title: "Analysis of SARS-CoV2 snps"
 output: html_document
 date: "2024-10"

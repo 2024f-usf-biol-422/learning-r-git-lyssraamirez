@@ -23,6 +23,6 @@ library(ggplot2)
 library(dplyr)
 ```
 
-```{r}
-
+```{r Source the function}
+source("code/functions/SNP_analyzation.R")
 ```

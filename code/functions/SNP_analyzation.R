@@ -16,33 +16,15 @@
 library(dplyr)
 library(ggplot2)
 
-# Define paths
-snp_file <- "data/sample_snp_data.csv"
-sample_ID <- "SRR12433063"
-
 #define snp data path
-snp_data <- read.csv(snp_file)
+snp_data <- ("data/sample_snp_data.csv")
 
 # define the function
 subset_snp_data <- function(snp_file, sample_ID)
 
-# subset the data to include only data from chosen sample
-sample_data <- snp_file %>%
-  filter(sample = sample_ID)
+  # subset the data to include only data from chosen sample
+  {sample_data <- snp_file %>%
+  filter(sample = sample_ID)}
 
-# Return subsetted data
+# Return subseted data
 return()
-
-
-
-
-
-
-
-
-
-
-
-
-
-

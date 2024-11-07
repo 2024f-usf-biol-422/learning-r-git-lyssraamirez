@@ -31,7 +31,8 @@ sample_data <- snp_file %>%
   filter(sample = sample_ID)
 
 # Return subsetted data
-return(sample_data)
+return()
+
 
 
 

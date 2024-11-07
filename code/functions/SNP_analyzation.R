@@ -20,11 +20,12 @@ library(ggplot2)
 snp_data <- ("data/sample_snp_data.csv")
 
 # define the function
-subset_snp_data <- function(snp_file, sample_ID)
+subset_snp_data <- function(snp_data, sample_id)
 
   # subset the data to include only data from chosen sample
-  {sample_data <- snp_file %>%
-  filter(sample = sample_ID)}
+  {sample_data <- snp_data %>%
+  filter(sample = sample_id)}
 
 # Return subseted data
-return()
+return
+return(

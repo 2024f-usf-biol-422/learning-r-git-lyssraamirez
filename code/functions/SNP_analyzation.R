@@ -27,7 +27,11 @@ snp_data <- read.csv(snp_file)
 subset_snp_data <- function(snp_file, sample_ID)
 
 # subset the data to include only data from chosen sample
+sample_data <- snp_file %>%
+  filter(sample = sample_ID)
 
+# Return subsetted data
+return(sample_data)
 
 
 

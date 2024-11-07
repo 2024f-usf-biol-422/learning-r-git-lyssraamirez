@@ -1,5 +1,5 @@
 ---
-name: Alyssa Ramirez
+Author: Alyssa Ramirez
 title: "Analysis of SARS-CoV2 snps"
 output: html_document
 date: "2024-10"
@@ -10,10 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## Setup
-```{Setup}
-# Assign the path/name of the SNP dataset to a variable
-snp_path <- "sample_snp_data copy.csv"
+
+```{r Setup}
+# Setup
+snp_path <- "data/sample_snp_data.csv"
 sample_id <- "SRR12433063"
 ```
 

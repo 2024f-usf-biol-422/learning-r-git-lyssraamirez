@@ -10,15 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
+## Setup
 ```{r Setup}
-# Setup
-snp_path <- "data/sample_snp_data.csv"
+snp_data <- "data/sample_snp_data.csv"
 sample_id <- "SRR12433063"
 ```
 
-```{nesessary packages}
-# Load necessary packages
+```{r nesessary packages}
 library(ggplot2)
 library(dplyr)
 ```
@@ -26,3 +24,13 @@ library(dplyr)
 ```{r Source the function}
 source("code/functions/SNP_analyzation.R")
 ```
+
+## Project description
+In this project, we analyze a dataset of Single Nucleotide Polymorphisms to 
+investigate genetic variation in multiple genome samples. The analysis focuses 
+on extracting data from a specific sample, visualizing SNP quality scores, and
+generating different types of  figures to demonstrate the results of each
+genome.
+
+
+

@@ -354,12 +354,30 @@ display: none;
 </div>
 
 
-<pre class="r"><code># Assign the path/name of the SNP dataset to a variable
-snp_path &lt;- &quot;sample_snp_data copy.csv&quot;
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<pre class="r"><code>snp_path &lt;- &quot;data/sample_snp_data.csv&quot;
 sample_id &lt;- &quot;SRR12433063&quot;</code></pre>
-<pre class="nesessary"><code># Load necessary packages
-library(ggplot2)
+<pre class="r"><code>library(ggplot2)
 library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>source(&quot;code/functions/SNP_analyzation.R&quot;)</code></pre>
+</div>
+<div id="project-description" class="section level2">
+<h2>Project description</h2>
+<p>In this project, we analyze a dataset of Single Nucleotide
+Polymorphisms to investigate genetic variation in multiple genome
+samples. The analysis focuses on extracting data from a specific sample,
+visualizing SNP quality scores, and generating different types of
+figures to demonstrate the results of each genome.</p>
+</div>
 
 
 

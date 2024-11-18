@@ -31,3 +31,6 @@ zgrep "^>" "$fasta_file" | \
     sort | \
     uniq -c | \
     sort -nr >> "$output"
+
+# Print the output file to the terminal
+cat "$output_file"

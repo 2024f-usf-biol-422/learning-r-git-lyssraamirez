@@ -6,5 +6,5 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-fi
-
+# Store the first argument (file path) in variable
+fasta_file="$1"

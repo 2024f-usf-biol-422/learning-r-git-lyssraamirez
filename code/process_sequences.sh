@@ -14,3 +14,7 @@ if [ ! -f "$fasta_file" ]; then
     echo "Error: File '$fasta_file' not found!"
     exit 1
 fi
+
+# Count the total number of sequences
+total_sequences=$(zgrep -c "^>" "$fasta_file")
+echo "Total number of sequences: $total_sequences"

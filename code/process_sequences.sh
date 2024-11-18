@@ -19,8 +19,9 @@ fi
 output_file="output.txt"
 
 # Count the total number of sequences
+echo "Counting the total number of sequences..."
 total_sequences=$(zgrep -c "^>" "$fasta_file")
-echo "Total number of sequences: $total_sequences"
+echo "Total number of sequences: $total_sequences" > "$output_file"
 
 # Tally sequences by country
 echo "Tallying sequences by country.."

@@ -8,3 +8,9 @@ fi
 
 # Store the first argument (file path) in variable
 fasta_file="$1"
+
+# Check if the provided file exists
+if [ ! -f "$fasta_file" ]; then
+    echo "Error: File '$fasta_file' not found!"
+    exit 1
+fi

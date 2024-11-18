@@ -15,6 +15,9 @@ if [ ! -f "$fasta_file" ]; then
     exit 1
 fi
 
+# Define the output file
+output_file="output.txt"
+
 # Count the total number of sequences
 total_sequences=$(zgrep -c "^>" "$fasta_file")
 echo "Total number of sequences: $total_sequences"

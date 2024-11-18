@@ -14,3 +14,8 @@ if [ ! -f "$1" ]; then
   exit 1
 fi
 
+# Calculate total number of sequences
+echo "Calculate the total number of sequences in the dataset"
+total_sequences=$(zgrep -c "^>" "$1")
+echo "Total sequences: $total_sequences"
+

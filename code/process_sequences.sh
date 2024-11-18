@@ -18,3 +18,13 @@ fi
 # Count the total number of sequences
 total_sequences=$(zgrep -c "^>" "$fasta_file")
 echo "Total number of sequences: $total_sequences"
+
+# Tally sequences by country
+echo "Tallying sequences by country.."
+
+zgrep "^>" "$fasta_file" | \
+    awk -F'|' '{for(i=1;i<=NF;i++) if($i ~ /country=/) print $i}' | \
+    sed 's/country=//g' | \
+    sort | \
+    uniq -c | \
+    sort -nr

@@ -24,11 +24,10 @@ total_sequences=$(zgrep -c "^>" "$fasta_file")
 echo "Total number of sequences: $total_sequences" > "$output_file"
 
 # Tally sequences by country
-echo "Tallying sequences by country.."
-
+echo "Tallying sequences by country.." >>"$output_file"
 zgrep "^>" "$fasta_file" | \
     awk -F'|' '{for(i=1;i<=NF;i++) if($i ~ /country=/) print $i}' | \
     sed 's/country=//g' | \
     sort | \
     uniq -c | \
-    sort -nr
+    sort -nr >> "$output"

@@ -19,3 +19,9 @@ echo "Calculate the total number of sequences in the dataset"
 total_sequences=$(zgrep -c "^>" "$1")
 echo "Total sequences: $total_sequences"
 
+# Count sequences by country
+echo "Tallying sequences by country"
+zgrep "^>" "$1" | \
+  awk -F'|' '{print $3}' | \
+  sort | uniq -c | sort -nr > country_sequence_counts.txt
+echo "Country tallies saved to country_sequence_counts.txt."

@@ -11,26 +11,32 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Setup
-```{r Setup}
+
+```{r Setup-chunk}
 snp_data <- "data/sample_snp_data.csv"
 sample_id <- "SRR12433063"
 ```
 
-```{r nesessary packages}
+```{r Load necessary packages}
+# Load required libraries and source the function
 library(ggplot2)
-library(dplyr)
-```
-
-```{r Source the function}
 source("code/functions/SNP_analyzation.R")
 ```
 
 ## Project description
-In this project, we analyze a dataset of Single Nucleotide Polymorphisms to 
+In this project, we analyze a dataset of single nucleotide polymorphisms to 
 investigate genetic variation in multiple genome samples. The analysis focuses 
 on extracting data from a specific sample, visualizing SNP quality scores, and
-generating different types of  figures to demonstrate the results of each
+generating different types of figures to demonstrate the results of each
 genome.
+
+```{r subet-data}
+
+```
+
+
+
+
 
 
 

@@ -16,7 +16,7 @@
 library(dplyr)
 
 # Function to subset SNP data set
-subset_snp_data <- function(file_path, sample_id ) {
+subset_snp_data <- function(file_path, sample_id) {
 
   # Read in csv file
   snp_data <- read.csv(file_path)

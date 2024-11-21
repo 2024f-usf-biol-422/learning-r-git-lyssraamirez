@@ -50,7 +50,7 @@ scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
   labs(
     title = paste("SNP quality scores by position for sample", sample_id),
     x = "Position in Genome",
-    y = 'SNP Quality Score"
+    y = "SNP Quality Score"
     ) 
 
 ```

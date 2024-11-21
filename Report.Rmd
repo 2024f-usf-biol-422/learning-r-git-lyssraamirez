@@ -48,9 +48,9 @@ cat("subset file saved as:", output_file)
 scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
   geom_point(alpha = 0.6) +
   labs(
-    title = paste("SNP quality scores by position for sample", sample_id),
-    x = "Position in Genome",
-    y = "SNP Quality Score") 
+       title = paste("SNP quality scores by position for sample", sample_id),
+       x = "Position in Genome",
+       y = "SNP Quality Score")
 ```
 
 

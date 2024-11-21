@@ -19,6 +19,7 @@ sample_id <- "SRR12433063"
 
 ```{r Load necessary packages}
 # Load required libraries and source the function
+
 library(ggplot2)
 source("code/functions/SNP_analyzation.R")
 ```
@@ -53,12 +54,6 @@ scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
     ) 
 
 ```
-
-
-```
-
-
-
 
 
 

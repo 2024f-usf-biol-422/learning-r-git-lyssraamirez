@@ -34,13 +34,13 @@ genome.
 ```{r subet-data}
 # Pass only the snp_file and sample_id arguments
 single_sample_data <- subset_snp_data(file_path = snp_file,
-                                  sample_id = sample_id)
+                                      sample_id = sample_id)
 # Create a csv file for subsetted data
 output_file <- paste0("data/subset_snp_data", sample_id, ".csv")
 write.csv(single_sample_data, file = output_file, row.names = FALSE)
 
 # Confirmation message
-cat("subset file saved as:" , output_file)
+cat("subset file saved as:", output_file)
 ```
 
 ```{r snp-scatterplot, echo=FALSE, message=FALSE,warning=FALSE}
@@ -50,9 +50,7 @@ scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
   labs(
     title = paste("SNP quality scores by position for sample", sample_id),
     x = "Position in Genome",
-    y = "SNP Quality Score"
-    ) 
-
+    y = "SNP Quality Score") 
 ```
 
 

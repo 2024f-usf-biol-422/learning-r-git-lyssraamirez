@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Setup
 
 ```{r Setup-chunk}
-snp_data <- "data/sample_snp_data.csv"
+snp_file <- "data/sample_snp_data.csv"
 sample_id <- "SRR12433063"
 ```
 
@@ -31,6 +31,29 @@ generating different types of figures to demonstrate the results of each
 genome.
 
 ```{r subet-data}
+# Pass only the snp_file and sample_id arguments
+single_sample_data <- subset_data(snp_file = snp_file,
+                                  sample_id = sample_id)
+# Create a csv file for subsetted data
+output_file <- paste0("data/subset_snp_data", sample_id, ".csv")
+write.csv(single_sample_data, file = output_file, row.names = FALSE)
+
+# Confirmation message
+cat("subset file saved as:" , output_file)
+```
+
+```{r snp-scatterplot, echo=FALSE, message=FALSE,warning=FALSE}
+# Scatterplot of SNP quality scores
+scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
+  geom_point(alpha = 0.6) +
+  labs(
+    title = paste("SNP quality scores by position for sample", sample_id),
+    x = "Position in Genome",
+    y = 'SNP Quality Score"
+    ) 
+
+```
+
 
 ```
 

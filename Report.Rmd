@@ -33,7 +33,7 @@ genome.
 
 ```{r subet-data}
 # Pass only the snp_file and sample_id arguments
-single_sample_data <- subset_data(snp_file = snp_file,
+single_sample_data <- subset_snp_data(file_path = snp_file,
                                   sample_id = sample_id)
 # Create a csv file for subsetted data
 output_file <- paste0("data/subset_snp_data", sample_id, ".csv")

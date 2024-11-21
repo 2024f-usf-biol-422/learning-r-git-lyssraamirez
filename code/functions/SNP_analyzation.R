@@ -16,13 +16,14 @@
 library(dplyr)
 
 # Function to subset SNP data set
-subset_snp_data <- function(file_path, sample_id)
+subset_snp_data <- function(file_path, sample_id){
 
-# Read in csv file
-snp_data <- read.csv(data/"sample_snp_data.csv")
+  # Read in csv file
+  snp_data <- read.csv(file_path)
 
-# Subset data for the given sample ID
-subset_data <- snp_data %>% filter(sample == sample_id)
+  # Subset data for the given sample ID
+  subset_data <- snp_data %>% filter(sample == sample_id)
 
-# Return subset data
-return(subset_data)
+  # Return subset data
+  return(subset_data)
+}

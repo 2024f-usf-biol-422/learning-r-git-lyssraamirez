@@ -1,6 +1,6 @@
 ---
 Author: Alyssa Ramirez
-title: "Analysis of SARS-CoV2 snps"
+title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
 date: "2024-10"
 ---
@@ -50,7 +50,18 @@ scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
   labs(
        title = paste("SNP quality scores by position for sample", sample_id),
        x = "Position in Genome",
-       y = "SNP Quality Score")
+       y = "SNP Quality Score") +
+  theme_minimal()
+
+# Save the scatterplot
+ggsave(filename = paste0("output/scatter_plot", sample_id, ".png"),
+       plot = scatter_plot, width = 8, height = 6)
+
+# Display the plot
+scatter_plot
+```
+```{r}
+
 ```
 
 

@@ -68,7 +68,7 @@ scatter_plot
 
 ```{r figues-boxplot-}
 # Boxplot of SNP Quality Scores by Position Category (e.g., grouped by bins)
-ggplot(single_sample_data, aes(x = factor(pos %/% 1000), y = qual)) +
+boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000), y = qual)) +
   geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red", outlier.shape = 16) +
   labs(
     title = paste("Boxplot of SNP Quality Scores for Sample", sample_id),
@@ -77,7 +77,12 @@ ggplot(single_sample_data, aes(x = factor(pos %/% 1000), y = qual)) +
   ) +
   theme_minimal()
 
-# Display the plot
+# Save the box plot to a PNG file
+ggsave(filename = paste0("output/box_plot_", sample_id, ".png"),
+       plot = boxplot_plot, width = 8, height = 6)
+
+# Display the boxplot
+boxplot_plot
 ```
 
 

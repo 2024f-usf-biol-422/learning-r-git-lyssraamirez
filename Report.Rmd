@@ -3,15 +3,14 @@ Author: Alyssa Ramirez
 title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
 date: "2024-10"
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## Setup
-
 ```{r Setup-chunk}
 snp_file <- "data/sample_snp_data.csv"
 sample_id <- "SRR12433063"
@@ -25,17 +24,23 @@ source("code/functions/SNP_analyzation.R")
 ```
 
 ## Project description
-In this project, we analyze a dataset of single nucleotide polymorphisms to 
+In this project, we analyze a data set of single nucleotide polymorphisms to 
 investigate genetic variation in multiple genome samples. The analysis focuses 
 on extracting data from a specific sample, visualizing SNP quality scores, and
 generating different types of figures to demonstrate the results of each
-genome.
+genome. In Figure one chromosome position is on the x and quality score is on 
+y. [@ggplot2] was used to execute a accurate visual box plot and scatter plot. 
+The data in these graphs was subset from a large set of SNP samples, [@dplyr] 
+was used to manipulate the data from the original data frame. To accurately 
+apply references and citations to support the figures [@citr] was used to cite 
+R packages. Chat GPT was also used as a reference in code of figures.
 
+## Figures
 ```{r subet-data}
-# Pass only the snp_file and sample_id arguments
+# Pass only the SNP_file and sample_id arguments
 single_sample_data <- subset_snp_data(file_path = snp_file,
                                       sample_id = sample_id)
-# Create a csv file for subsetted data
+# Create a csv file for subset data
 output_file <- paste0("data/subset_snp_data", sample_id, ".csv")
 write.csv(single_sample_data, file = output_file, row.names = FALSE)
 
@@ -60,8 +65,19 @@ ggsave(filename = paste0("output/scatter_plot", sample_id, ".png"),
 # Display the plot
 scatter_plot
 ```
-```{r}
 
+```{r figues-boxplot-}
+# Boxplot of SNP Quality Scores by Position Category (e.g., grouped by bins)
+ggplot(single_sample_data, aes(x = factor(pos %/% 1000), y = qual)) +
+  geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red", outlier.shape = 16) +
+  labs(
+    title = paste("Boxplot of SNP Quality Scores for Sample", sample_id),
+    x = "Position in Genome (in bins of 1000)",
+    y = "SNP Quality Score"
+  ) +
+  theme_minimal()
+
+# Display the plot
 ```
 
 

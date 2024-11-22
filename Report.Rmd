@@ -3,7 +3,6 @@ Author: Alyssa Ramirez
 title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
 date: "2024-10"
-bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -35,7 +34,7 @@ was used to manipulate the data from the original data frame. To accurately
 apply references and citations to support the figures [@citr] was used to cite 
 R packages. Chat GPT was also used as a reference in code of figures.
 
-## Figures
+## Subsetting data
 ```{r subet-data}
 # Pass only the SNP_file and sample_id arguments
 single_sample_data <- subset_snp_data(file_path = snp_file,
@@ -48,6 +47,7 @@ write.csv(single_sample_data, file = output_file, row.names = FALSE)
 cat("subset file saved as:", output_file)
 ```
 
+## Figures
 ```{r snp-scatterplot, echo=FALSE, message=FALSE,warning=FALSE}
 # Scatterplot of SNP quality scores
 scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
@@ -68,8 +68,10 @@ scatter_plot
 
 ```{r figues-boxplot-}
 # Boxplot of SNP Quality Scores by Position Category (e.g., grouped by bins)
-boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000), y = qual)) +
-  geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red", outlier.shape = 16) +
+boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000),
+                                               y = qual)) +
+  geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red",
+               outlier.shape = 16) +
   labs(
     title = paste("Boxplot of SNP Quality Scores for Sample", sample_id),
     x = "Position in Genome (in bins of 1000)",
@@ -84,7 +86,14 @@ ggsave(filename = paste0("output/box_plot_", sample_id, ".png"),
 # Display the boxplot
 boxplot_plot
 ```
+## Session Info
+```{r session-info, echo=FALSE}
+# Print session information
+devtools::session_info()
+```
 
+## Soures Cited
+```{r}
 
-
+```
 

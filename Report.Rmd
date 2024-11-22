@@ -87,13 +87,13 @@ ggsave(filename = paste0("output/box_plot_", sample_id, ".png"),
 boxplot_plot
 ```
 ## Session Info
+## Soures Cited
 ```{r session-info, echo=FALSE}
 # Print session information
 devtools::session_info()
 ```
 
-## Soures Cited
-```{r}
 
-```
+
+
 

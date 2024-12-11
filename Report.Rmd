@@ -3,6 +3,7 @@ Author: Alyssa Ramirez
 title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
 date: "2024-10"
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}

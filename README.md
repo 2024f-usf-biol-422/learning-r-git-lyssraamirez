@@ -24,6 +24,15 @@ for various samples.
 ├── README.md              # Instructions for setting up and running the project.
 └── references.bib         # Bibtex references for package citations.
 
+## Installation
+
+To run the project, ensure you have R and the following packages installed:
+- `dplyr` for data manipulation
+- `ggplot2` for data visualization
+- `knitr` and `rmarkdown` for generating reports
+- `devtools` for session information
+- `lintr` for code linting 
+
 ### Workflow
 ---
 #### Create a single function R script
@@ -50,4 +59,20 @@ also source the R script that was made for a single function.
 A detailed purpose of the project is written inbetween chunk 3 and 4.
 
 ### Subsetting data
+Choose which sample ID will be used for figues and subset it from the full data
+
+### Scatterplot
+Create scatterplot with subsetted data and write figure description under the figure.
+
+### Boxplot 
+Create a boxplot with subsetted data abd write figure description under the figure.
+
+### Session info
+Use devtools to create a session info () log of data.
+
+### Sources Cited
+When sources are properly cited in the "reference.bib" file sources will generate automatically.
+
+### Write a README
+Properly write a "README.md" file for accurate repurposing and 
 

@@ -66,6 +66,8 @@ ggsave(filename = paste0("output/scatter_plot", sample_id, ".png"),
 scatter_plot
 ```
 
+**Figure 1.** Scatterplot of SNP quality scores by genome position for sample SRR12433063. This figure shows the relationship between distribution of SNP quality scores across the genome, with each point representing a specific SNP position and its associated quality score.
+
 ```{r figues-boxplot-}
 # Boxplot of SNP Quality Scores by Position Category (e.g., grouped by bins)
 boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000),
@@ -86,6 +88,8 @@ ggsave(filename = paste0("output/box_plot_", sample_id, ".png"),
 # Display the boxplot
 boxplot_plot
 ```
+
+**Figure 2.** Boxplot of SNP quality scores by genome position for sample SRR12433063. This figure shows the relationship between distribution of SNP quality scores across the genome and its associated quality score.
 ## Session Info
 ```{r session-info, echo=FALSE}
 # Print session information

@@ -1,9 +1,6 @@
----
-title: "SNP Data Analysis Report"
-author: "Alyssa Ramirez"
-date: "2024-11"
-output: html_document
----
+# Alyssa Ramirez
+# December 11,2024
+# SNP Data Analysis Report README.md
 
 ### Project Overview
 ---

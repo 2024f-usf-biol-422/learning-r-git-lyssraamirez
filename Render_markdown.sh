@@ -1,5 +1,8 @@
 #!/bin/bash
 set -euo pipefail
+#Alyssa Ramirez
+#amramirez18@dons.usfca.edu
+#12/11/24
 
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 2 ]; then

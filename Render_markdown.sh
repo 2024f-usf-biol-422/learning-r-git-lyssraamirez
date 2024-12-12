@@ -4,6 +4,17 @@ set -euo pipefail
 #amramirez18@dons.usfca.edu
 #12/11/24
 
+# Description:
+# This script renders the RMarkdown file (Report.Rmd) with param variables
+# parameters (SNP file path and sample ID). The script generates:
+# - A subset SNP data file for the specified sample ID.
+# - An HTML report with visualizations and analysis results.
+# - Scatterplot and Box plot of associated sample.
+#
+# Usage:
+# Run the script in the terminal with the following syntax:
+#   bash Render_markdown.sh <snp_file_path> <sample_id>
+
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 2 ]; then
   echo "Usage: $0 <snp_file_path> <sample_id>"

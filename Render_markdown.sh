@@ -33,35 +33,9 @@ Rscript -e "rmarkdown::render(
   output_file = '${OUTPUT_DIR}/Report_${SAMPLE_ID}.html'
 )"
 
-# Move the generated subset CSV to the data directory
-if [ -f "data/subset_snp_data${SAMPLE_ID}.csv" ]; then
-  mv "data/subset_snp_data${SAMPLE_ID}.csv" "$DATA_DIR/"
-  echo "Subset CSV moved to ${DATA_DIR}/subset_snp_data${SAMPLE_ID}.csv"
-else
-  echo "Subset CSV not found"
-fi
-
-# Move the generated scatter plot to the figures directory
-if [ -f "output/scatter_plot${SAMPLE_ID}.png" ]; then
-  mv "output/scatter_plot${SAMPLE_ID}.png" "$FIGURE_DIR/"
-  echo "Scatter plot moved to ${FIGURE_DIR}/scatter_plot${SAMPLE_ID}.png"
-else
-  echo "Scatter plot not found"
-fi
-
-# Move the generated box plot to the figures directory
-if [ -f "output/box_plot_${SAMPLE_ID}.png" ]; then
-  mv "output/box_plot_${SAMPLE_ID}.png" "$FIGURE_DIR/"
-  echo "Box plot moved to ${FIGURE_DIR}/box_plot_${SAMPLE_ID}.png"
-else
-  echo "Box plot not found"
-fi
-
 # Print success message
-echo "Report and outputs generated successfully:"
-echo "HTML Report: ${OUTPUT_DIR}/Report_${SAMPLE_ID}.html"
-echo "Subset CSV: ${DATA_DIR}/subset_snp_data${SAMPLE_ID}.csv"
-echo "Figures: ${FIGURE_DIR}/"
+echo "Report and outputs generated successfully!"
+
 
 
 

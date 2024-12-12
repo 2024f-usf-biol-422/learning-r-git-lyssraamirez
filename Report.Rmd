@@ -30,7 +30,8 @@ y.`Ggplot2` [@wickham2016ggplot2] was used to execute a accurate visual box plot
 ## Subsetting data
 ```{r test-data}
 # Call the function to subset data using the parameters
-single_sample_data <- subset_snp_data(file_path = params$snp_file, sample_id = params$sample_id)
+single_sample_data <- subset_snp_data(file_path = params$snp_file,
+                                      sample_id = params$sample_id)
 
 # Save the subset data to a CSV file
 output_file <- paste0("data/subset_snp_data", params$sample_id, ".csv")

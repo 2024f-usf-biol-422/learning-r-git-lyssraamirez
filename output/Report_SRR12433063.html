@@ -390,129 +390,13 @@ source(&quot;code/functions/SNP_analyzation.R&quot;)</code></pre>
 <div id="project-description" class="section level2">
 <h2>Project description</h2>
 <p>In this project, we analyze a data set of single nucleotide polymorphisms to investigate genetic variation in multiple genome samples. The analysis focuses on extracting data from a specific sample, visualizing SNP quality scores, and generating different types of figures to demonstrate the results of each genome. In Figure one chromosome position is on the x and quality score is on y.<code>Ggplot2</code> <span class="citation">(Wickham 2016)</span> was used to execute a accurate visual box plot and scatter plot. The data in these graphs was subset from a large set of SNP samples, <code>dplyr</code><span class="citation">(Wickham et al. 2023)</span> was used to manipulate the data from the original data frame. To accurately apply references and citations to support the figures <code>citr</code> <span class="citation">(RStudio 2023)</span> was used to cite R packages.After the “Report.Rmd” file was completed it was kitted using <code>knitr</code> <span class="citation">(Xie 2023)</span> to configure a “Report.html” output report. “Chat GPT” <span class="citation">(OpenAI 2023)</span> was also used as a reference in code of figures.</p>
-<div id="test" class="section level3">
-<h3>test</h3>
-<pre class="r"><code>print(params$snp_file)  # Should print the SNP file path</code></pre>
-<pre><code>## [1] &quot;data/sample_snp_data.csv&quot;</code></pre>
-<pre class="r"><code>print(params$sample_id) # Should print the sample ID</code></pre>
-<pre><code>## [1] &quot;SRR12433063&quot;</code></pre>
-<pre class="r"><code>file.exists(params$snp_file) # Should return TRUE</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-</div>
 </div>
 <div id="subsetting-data" class="section level2">
 <h2>Subsetting data</h2>
 <pre class="r"><code># Load the SNP data from the file specified in params
 snp_data &lt;- read.csv(params$snp_file, header = TRUE)
 
-# Debugging: Check the first few rows and column names
-print(&quot;Loaded SNP data:&quot;)</code></pre>
-<pre><code>## [1] &quot;Loaded SNP data:&quot;</code></pre>
-<pre class="r"><code>print(head(snp_data))</code></pre>
-<pre><code>##        sample       chrom   pos id ref alt qual filter
-## 1 SRR12433063 NC_045512.2   241 NA   C   T  225     NA
-## 2 SRR12433063 NC_045512.2  3037 NA   C   T  225     NA
-## 3 SRR12433063 NC_045512.2  6889 NA   A   G  225     NA
-## 4 SRR12433063 NC_045512.2 21575 NA   C   T  225     NA
-## 5 SRR12433063 NC_045512.2 22213 NA   T   G  225     NA
-## 6 SRR12433063 NC_045512.2 23403 NA   A   G  225     NA
-##                                                                                info
-## 1    DP=257;VDB=0.036855;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,206,49;MQ=60
-## 2   DP=243;VDB=0.0140637;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,160,78;MQ=59
-## 3    DP=227;VDB=0.953534;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,149,59;MQ=59
-## 4 DP=250;VDB=2.62889e-11;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,151,97;MQ=60
-## 5    DP=225;VDB=0.573153;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,156,68;MQ=60
-## 6    DP=250;VDB=0.999892;SGB=-0.693147;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,188,53;MQ=60
-##   gene Assay.Type AvgSpotLen     Bases  BioProject    BioSample BioSampleModel
-## 1 &lt;NA&gt;   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-## 2 &lt;NA&gt;   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-## 3 &lt;NA&gt;   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-## 4    S   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-## 5    S   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-## 6    S   AMPLICON        304 432469917 PRJNA656695 SAMN15795850    Pathogen.cl
-##       Bytes                Center.Name Collection_Date Consent
-## 1 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-## 2 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-## 3 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-## 4 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-## 5 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-## 6 214887203 UNIVERSITY OF PENNSYLVANIA         7/13/20  public
-##   DATASTORE.filetype DATASTORE.provider               DATASTORE.region
-## 1          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-## 2          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-## 3          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-## 4          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-## 5          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-## 6          fastq,sra         gs,ncbi,s3 gs.US,ncbi.public,s3.us-east-1
-##   Experiment geo_loc_name_country geo_loc_name_country_continent
-## 1 SRX8929019                  USA                  North America
-## 2 SRX8929019                  USA                  North America
-## 3 SRX8929019                  USA                  North America
-## 4 SRX8929019                  USA                  North America
-## 5 SRX8929019                  USA                  North America
-## 6 SRX8929019                  USA                  North America
-##        geo_loc_name host_disease         Host host_tissue_sampled
-## 1 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-## 2 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-## 3 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-## 4 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-## 5 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-## 6 USA: Philadelphia     Covid-19 Homo sapiens               NP-OP
-##       Instrument Isolate Isolation_source             lat_lon Library.Name
-## 1 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-## 2 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-## 3 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-## 4 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-## 5 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-## 6 Illumina MiSeq   304 1         hospital 39.9526 N 75.1652 W    VSP0248-1
-##   LibraryLayout LibrarySelection LibrarySource
-## 1        PAIRED              PCR     VIRAL RNA
-## 2        PAIRED              PCR     VIRAL RNA
-## 3        PAIRED              PCR     VIRAL RNA
-## 4        PAIRED              PCR     VIRAL RNA
-## 5        PAIRED              PCR     VIRAL RNA
-## 6        PAIRED              PCR     VIRAL RNA
-##                                          Organism Platform          ReleaseDate
-## 1 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-## 2 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-## 3 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-## 4 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-## 5 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-## 6 Severe acute respiratory syndrome coronavirus 2 ILLUMINA 2020-08-12T00:00:00Z
-##   Sample.Name SRA.Study collected_by                       passage_history
-## 1   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA
-## 2   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA
-## 3   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA
-## 4   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA
-## 5   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA
-## 6   VSP0248-1 SRP277146 Ron\\, Young Extraction Technique: QiaAMP mini RNA</code></pre>
-<pre class="r"><code>print(&quot;Column names:&quot;)</code></pre>
-<pre><code>## [1] &quot;Column names:&quot;</code></pre>
-<pre class="r"><code>print(colnames(snp_data))</code></pre>
-<pre><code>##  [1] &quot;sample&quot;                         &quot;chrom&quot;                         
-##  [3] &quot;pos&quot;                            &quot;id&quot;                            
-##  [5] &quot;ref&quot;                            &quot;alt&quot;                           
-##  [7] &quot;qual&quot;                           &quot;filter&quot;                        
-##  [9] &quot;info&quot;                           &quot;gene&quot;                          
-## [11] &quot;Assay.Type&quot;                     &quot;AvgSpotLen&quot;                    
-## [13] &quot;Bases&quot;                          &quot;BioProject&quot;                    
-## [15] &quot;BioSample&quot;                      &quot;BioSampleModel&quot;                
-## [17] &quot;Bytes&quot;                          &quot;Center.Name&quot;                   
-## [19] &quot;Collection_Date&quot;                &quot;Consent&quot;                       
-## [21] &quot;DATASTORE.filetype&quot;             &quot;DATASTORE.provider&quot;            
-## [23] &quot;DATASTORE.region&quot;               &quot;Experiment&quot;                    
-## [25] &quot;geo_loc_name_country&quot;           &quot;geo_loc_name_country_continent&quot;
-## [27] &quot;geo_loc_name&quot;                   &quot;host_disease&quot;                  
-## [29] &quot;Host&quot;                           &quot;host_tissue_sampled&quot;           
-## [31] &quot;Instrument&quot;                     &quot;Isolate&quot;                       
-## [33] &quot;Isolation_source&quot;               &quot;lat_lon&quot;                       
-## [35] &quot;Library.Name&quot;                   &quot;LibraryLayout&quot;                 
-## [37] &quot;LibrarySelection&quot;               &quot;LibrarySource&quot;                 
-## [39] &quot;Organism&quot;                       &quot;Platform&quot;                      
-## [41] &quot;ReleaseDate&quot;                    &quot;Sample.Name&quot;                   
-## [43] &quot;SRA.Study&quot;                      &quot;collected_by&quot;                  
-## [45] &quot;passage_history&quot;</code></pre>
-<pre class="r"><code># Subset the data for the given sample ID
+# Subset the data for the given sample ID
 single_sample_data &lt;- subset(snp_data, sample == params$sample_id)
 
 # Save the subset data to a CSV file

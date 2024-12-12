@@ -1,24 +1,103 @@
 ---
-title: 'Your Title Here'
-author: "Don Francisco"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+Author: Alyssa Ramirez
+title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
-csl: bioinformatics.csl
+date: "2024-10"
 bibliography: references.bib
+params:
+  snp_file: "data/sample_snp_data.csv"
+  sample_id: "SRR12433063"
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = FALSE,
-                      warning = FALSE,
-                      message = FALSE,
-                      error = FALSE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Background
-
-This is a report on SARS-CoV-2, including some variant analysis.
-
-```{r sample-chunk}
-# this is an example code chunk
-print("Hello World")
+```{r Load necessary packages}
+# Load required libraries and source the function
+library(ggplot2)
+source("code/functions/SNP_analyzation.R")
 ```
+
+## Project description
+In this project, we analyze a data set of single nucleotide polymorphisms to 
+investigate genetic variation in multiple genome samples. The analysis focuses 
+on extracting data from a specific sample, visualizing SNP quality scores, and
+generating different types of figures to demonstrate the results of each
+genome. In Figure one chromosome position is on the x and quality score is on 
+y.`Ggplot2` [@wickham2016ggplot2] was used to execute a accurate visual box plot and scatter plot.The data in these graphs was subset from a large set of SNP samples, `dplyr`[@wickham2023dplyr] was used to manipulate the data from the original data frame. To accurately apply references and citations to support the figures `citr` [@rstudio2023citr] was used to cite R packages.After the "Report.Rmd" file was completed it was kitted using `knitr` [@xie2023knitr] to configure a "Report.html" output report. "Chat GPT" [@openai2023chatgpt] was also used as a reference in code of figures.
+
+## Subsetting data
+```{r test-data}
+# Call the function to subset data using the parameters
+single_sample_data <- subset_snp_data(file_path = params$snp_file,
+                                      sample_id = params$sample_id)
+
+# Save the subset data to a CSV file
+output_file <- paste0("data/subset_snp_data", params$sample_id, ".csv")
+write.csv(single_sample_data, file = output_file, row.names = FALSE)
+
+# Confirmation message
+cat("Subset file saved as:", output_file, "\n")
+
+```
+
+## Figures
+```{r snp-scatterplot, echo=FALSE, message=FALSE,warning=FALSE}
+# Scatterplot of SNP quality scores
+scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
+  geom_point(alpha = 0.6) +
+  labs(
+       title = paste("SNP quality scores by position for sample",
+                     params$sample_id),
+       x = "Position in Genome",
+       y = "SNP Quality Score") +
+  theme_minimal()
+
+# Save the scatterplot
+ggsave(filename = paste0("output/scatter_plot", params$sample_id, ".png"),
+       plot = scatter_plot, width = 8, height = 6)
+
+# Display the plot
+scatter_plot
+```
+
+**Figure 1.** Scatterplot of SNP quality scores by genome position for sample SRR12433063. This figure shows the relationship between distribution of SNP quality scores across the genome, with each point representing a specific SNP position and its associated quality score.
+
+```{r figues-boxplot-}
+# Boxplot of SNP Quality Scores by Position Category (e.g., grouped by bins)
+boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000),
+                                               y = qual)) +
+  geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red",
+               outlier.shape = 16) +
+  labs(
+    title = paste("Boxplot of SNP Quality Scores for Sample",
+                  params$sample_id),
+    x = "Position in Genome (in bins of 1000)",
+    y = "SNP Quality Score"
+  ) +
+  theme_minimal()
+# Save the box plot to a PNG file
+ggsave(filename = paste0("output/box_plot_", params$sample_id, ".png"),
+       plot = boxplot_plot, width = 8, height = 6)
+
+# Display the boxplot
+boxplot_plot
+```
+
+**Figure 2.** Boxplot of SNP quality scores by genome position for sample SRR12433063. This figure shows the relationship between distribution of SNP quality scores across the genome and its associated quality score.
+## Session Info
+```{r session-info, echo=FALSE}
+# Print session information
+devtools::session_info()
+```
+
+## Sources Cited
+```{r-cite-sources}
+# Sources cited
+```
+
+
+
+
+

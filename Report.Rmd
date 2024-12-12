@@ -4,16 +4,13 @@ title: "Analysis of SARS-CoV2 SNPs"
 output: html_document
 date: "2024-10"
 bibliography: references.bib
+params:
+  snp_file: "data/sample_snp_data.csv"
+  sample_id: "SRR12433063"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Setup
-```{r Setup-chunk}
-snp_file <- "data/sample_snp_data.csv"
-sample_id <- "SRR12433063"
 ```
 
 ```{r Load necessary packages}
@@ -37,10 +34,11 @@ R packages.After the "Report.Rmd" file was completed it was kitted using [@xie20
 ## Subsetting data
 ```{r subet-data}
 # Pass only the SNP_file and sample_id arguments
-single_sample_data <- subset_snp_data(file_path = snp_file,
-                                      sample_id = sample_id)
+
+single_sample_data <- subset_snp_data(file_path = params$snp_file,
+                                      sample_id = params$sample_id)
 # Create a csv file for subset data
-output_file <- paste0("data/subset_snp_data", sample_id, ".csv")
+output_file <- paste0("data/subset_snp_data",params$sample_id, ".csv")
 write.csv(single_sample_data, file = output_file, row.names = FALSE)
 
 # Confirmation message
@@ -53,13 +51,13 @@ cat("subset file saved as:", output_file)
 scatter_plot <- ggplot(single_sample_data, aes(x = pos, y = qual)) +
   geom_point(alpha = 0.6) +
   labs(
-       title = paste("SNP quality scores by position for sample", sample_id),
+       title = paste("SNP quality scores by position for sample",params$sample_id),
        x = "Position in Genome",
        y = "SNP Quality Score") +
   theme_minimal()
 
 # Save the scatterplot
-ggsave(filename = paste0("output/scatter_plot", sample_id, ".png"),
+ggsave(filename = paste0("output/scatter_plot", params$sample_id, ".png"),
        plot = scatter_plot, width = 8, height = 6)
 
 # Display the plot
@@ -75,14 +73,14 @@ boxplot_plot <- ggplot(single_sample_data, aes(x = factor(pos %/% 1000),
   geom_boxplot(fill = "skyblue", color = "black", outlier.colour = "red",
                outlier.shape = 16) +
   labs(
-    title = paste("Boxplot of SNP Quality Scores for Sample", sample_id),
+    title = paste("Boxplot of SNP Quality Scores for Sample", params$sample_id),
     x = "Position in Genome (in bins of 1000)",
     y = "SNP Quality Score"
   ) +
   theme_minimal()
 
 # Save the box plot to a PNG file
-ggsave(filename = paste0("output/box_plot_", sample_id, ".png"),
+ggsave(filename = paste0("output/box_plot_", params$sample_id, ".png"),
        plot = boxplot_plot, width = 8, height = 6)
 
 # Display the boxplot

@@ -31,18 +31,34 @@ was used to manipulate the data from the original data frame. To accurately
 apply references and citations to support the figures `citr` [@rstudio2023citr] was used to cite 
 R packages.After the "Report.Rmd" file was completed it was kitted using `knitr` [@xie2023knitr] to configure a "Report.html" output report. "Chat GPT" [@openai2023chatgpt] was also used as a reference in code of figures.
 
-## Subsetting data
+### test
 ```{r subet-data}
-# Pass only the SNP_file and sample_id arguments
+print(params$snp_file)  # Should print the SNP file path
+print(params$sample_id) # Should print the sample ID
+file.exists(params$snp_file) # Should return TRUE
+```
 
-single_sample_data <- subset_snp_data(file_path = params$snp_file,
-                                      sample_id = params$sample_id)
-# Create a csv file for subset data
+## Subsetting data
+```{r test-data}
+# Load the SNP data from the file specified in params
+snp_data <- read.csv(params$snp_file, header = TRUE)
+
+# Debugging: Check the first few rows and column names
+print("Loaded SNP data:")
+print(head(snp_data))
+print("Column names:")
+print(colnames(snp_data))
+
+# Subset the data for the given sample ID
+single_sample_data <- subset(snp_data, sample == params$sample_id)
+
+# Save the subset data to a CSV file
 output_file <- paste0("data/subset_snp_data", params$sample_id, ".csv")
 write.csv(single_sample_data, file = output_file, row.names = FALSE)
 
 # Confirmation message
-cat("subset file saved as:", output_file)
+cat("Subset file saved as:", output_file, "\n")
+
 ```
 
 ## Figures

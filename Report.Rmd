@@ -25,11 +25,11 @@ investigate genetic variation in multiple genome samples. The analysis focuses
 on extracting data from a specific sample, visualizing SNP quality scores, and
 generating different types of figures to demonstrate the results of each
 genome. In Figure one chromosome position is on the x and quality score is on 
-y."Ggplot2" [@wickham2016ggplot2] was used to execute a accurate visual box plot and scatter plot.
-The data in these graphs was subset from a large set of SNP samples, "dplyr"[@wickham2023dplyr] 
+y.`Ggplot2` [@wickham2016ggplot2] was used to execute a accurate visual box plot and scatter plot.
+The data in these graphs was subset from a large set of SNP samples, `dplyr`[@wickham2023dplyr] 
 was used to manipulate the data from the original data frame. To accurately 
-apply references and citations to support the figures "citr" [@rstudio2023citr] was used to cite 
-R packages.After the "Report.Rmd" file was completed it was kitted using [@xie2023knitr] to configure a "Report.html" output report. Chat GPT [@openai2023chatgpt] was also used as a reference in code of figures.
+apply references and citations to support the figures `citr` [@rstudio2023citr] was used to cite 
+R packages.After the "Report.Rmd" file was completed it was kitted using `knitr` [@xie2023knitr] to configure a "Report.html" output report. "Chat GPT" [@openai2023chatgpt] was also used as a reference in code of figures.
 
 ## Subsetting data
 ```{r subet-data}
